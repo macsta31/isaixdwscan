@@ -156,7 +156,6 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
                 <NoLeakMessage>No leaks for this email address were found on the deep web.<br/>This is not a guarantee of safety but a we think you are doing pretty good</NoLeakMessage>
                 <p>Or maybe you spelled your email wrong :O</p>
             </NoLeakContainer>
-
             :
             <></>
         }
