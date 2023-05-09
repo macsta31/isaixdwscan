@@ -1,6 +1,7 @@
 import Header from "./Header"
 import Body from "./Body"
 import styled from 'styled-components'
+import Footer from "./Footer"
 import { useState } from "react"
 
 const Layout = () => {
@@ -38,6 +39,7 @@ const Layout = () => {
         <Header callAPI={callAPI} clearLeaks={clearLeaks} />
 
         <Body leaks={leaks} errorMessage={error} />
+        <Footer />
     </Container>
     )
 }
@@ -45,7 +47,7 @@ const Layout = () => {
 const Container = styled.div`
     display:flex;
     flex-direction:column;
-    min-height: 100vh;
+    min-height: 120vh;
 `
 
 export default Layout
