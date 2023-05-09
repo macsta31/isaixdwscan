@@ -14,7 +14,11 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
     const submitForm = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const form = e.currentTarget as HTMLFormElement
-        if(email === ''){
+        const input = document.getElementById("input")
+        const inputElement = input as HTMLFormElement
+        const formValue = inputElement.value
+        console.log(formValue)
+        if(formValue === ''){
             const input = document.getElementById("input")
             if(input !== null){
                 setNoEmailError(true);
