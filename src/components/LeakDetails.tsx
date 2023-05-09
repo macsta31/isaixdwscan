@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import fs from 'fs';
 import { useCallback, useEffect, useState } from 'react';
 import ThreatBar from './ThreatBar';
 import  { AiFillQuestionCircle } from 'react-icons/ai'
@@ -167,11 +166,6 @@ const TextBlurb = styled.p`
     text-align: center;
     line-height: 1.5;
     margin: 20px;
-`
-
-const Div = styled.div`
-    border: 1ps solid black;
-    border-radius: 20px;
 `
 
 const InfoPanel = styled.div`
