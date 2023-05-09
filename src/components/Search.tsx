@@ -13,8 +13,8 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
 
     const submitForm = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const form = e.currentTarget as HTMLFormElement
         if(email === ''){
-            console.log(e);
             const input = document.getElementById("input")
             if(input !== null){
                 setNoEmailError(true);
@@ -24,6 +24,7 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
             return;
         }
         callAPI(email)
+        form.reset()
         
     }
 
@@ -64,7 +65,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items:center;
-    padding: 70px 70px 40px 70px;
+    padding: 20px;
     width: 100%;
     /* transform:translateY(150px); */
 `
@@ -72,25 +73,28 @@ const Container = styled.div`
 const Form = styled.form`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
 `
 
 const Input = styled.input`
-    min-width: 55%;
-    padding: 0px 25px;
-    height: 2em;
+    min-width: 50%;
+    padding: 0px 15px;
+    margin-right: 20px;
+    height: 1.7em;
     border-radius: 20px;
-    font-size: 2em;
+    font-size: 1.7em;
     text-align: center;
 `
 
 const Button = styled.button`
     width: 20%;
-    height: 2.2em;
+    height: 1.9em;
     padding: 0px 10px;
     border-radius: 20px;
-    font-size: 2em;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 1.8em;
     &:hover{
         cursor: pointer;
         transform: scale(1.1);

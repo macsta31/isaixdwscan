@@ -10,7 +10,7 @@ const Layout = () => {
 
     const callAPI = async (email: string): Promise<void> => {
         try {
-          const response = await fetch(`http://localhost:3001/breachedaccount/${email}`);
+          const response = await fetch(`https://isaixdwproxy.onrender.com/breachedaccount/${email}`);
           const data = await response.json();
       
           if (!response.ok) {

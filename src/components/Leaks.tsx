@@ -69,7 +69,7 @@ const Leaks: React.FC<LeaksProps> = ({leaks, getData}) => {
 
     return (
     <Container>
-        <H1>Leaks</H1>
+        <H2>Leaks</H2>
         {
             leaks ? 
             leaks.map((leak, key) => (
@@ -87,13 +87,13 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    padding: 30px;
     /* justify-content: center; */
     border-right: 3px solid black;
 `
 
-const H1 = styled.h1`
-    border-bottom: 3px solid black;
+const H2 = styled.h2`
+    border-bottom: 3px solid white;
     margin-bottom: 20px;
     padding-bottom: 5px;
 `

@@ -22,14 +22,14 @@ const Container = styled.div`
     flex-direction: column;
     color: white;
     /* font-size: 4em; */
-    padding: 75px 150px 0px 150px;
+    padding: 40px 80px 0px 80px;
     /* margin: 100px 100px 0px 100px; */
     font-weight: 700;
     border-bottom: 3px solid black;
 `
 
 const H1 = styled.h1`
-    font-size: 3em;
+    font-size: 2em;
 `
 
 export default Header
