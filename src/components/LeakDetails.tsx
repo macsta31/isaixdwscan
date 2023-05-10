@@ -211,10 +211,6 @@ const List = styled.ul`
     padding-bottom: 20px;
 `
 
-const ListItem = styled.li`
-    
-`
-
 const SubContainer = styled.div`
     position: relative;
     display: flex;
