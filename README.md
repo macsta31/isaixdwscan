@@ -19,22 +19,22 @@ Dark Web Scanner is an invaluable tool for internet users who wish to take contr
 Loading into the website, you will see a search bar and submit buttton. This is where you will input your email and hit submit to view leaks where your email was present.
 
 You will see a screen similar to the following, with all the leaks present on the left side of the screen.
-<img width="450" alt="Screen Shot 2023-05-10 at 10 52 11 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/520a3424-23b3-4ad1-b70c-0aaac02cca06">
+<img width="600" alt="Screen Shot 2023-05-10 at 10 52 11 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/520a3424-23b3-4ad1-b70c-0aaac02cca06">
 
 You may now click on any of the cards on the left, representing your leaks, and the site will automatically display information about said leak on the right portion of the screen.
 
-<img width="450" alt="Screen Shot 2023-05-10 at 10 49 57 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/14b00b30-b01d-48a9-a5f1-d864fc39757b">
+<img width="600" alt="Screen Shot 2023-05-10 at 10 49 57 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/14b00b30-b01d-48a9-a5f1-d864fc39757b">
 
 Now pressing on the question mark in the top right corner of the leak details tab will give you more information on the context of the leak.
-<img width="450" alt="Screen Shot 2023-05-10 at 10 49 41 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/69e77a0b-4ae0-4416-a6aa-07d896ba3ce8">
+<img width="600" alt="Screen Shot 2023-05-10 at 11 04 35 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/efeb5f25-4317-4d09-91e6-30244001314c">
 
 Back to the original leak details tab, if **Passwords** is present among the dataclasses, you will see a warning symbol next to it which once clicked on will display a *reset password* modal with a link to the company website.
 
-<img width="450" alt="Screen Shot 2023-05-10 at 10 50 08 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/31d4976a-e4ce-4719-9134-9356c3e42d66">
+<img width="600" alt="Screen Shot 2023-05-10 at 10 50 08 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/31d4976a-e4ce-4719-9134-9356c3e42d66">
 
 On the other hand, if the email that was searched for comes back with no results, it was not found in any leaks that we know about. **This is not a guarantee**. You will be presented with the following screen.
 
-<img width="450" alt="Screen Shot 2023-05-10 at 11 00 02 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/ba0469cf-3bbe-4842-ba49-aa5cc400ffda">
+<img width="600" alt="Screen Shot 2023-05-10 at 11 00 02 AM" src="https://github.com/macsta31/isaixdwscan/assets/66531417/ba0469cf-3bbe-4842-ba49-aa5cc400ffda">
 
 ## Technology Stack and Data Source
 
