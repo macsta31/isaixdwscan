@@ -55,8 +55,9 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
   return (
     <Div>  
         <Container>
+            <H3>Enter email to begin dark web scan</H3>
             <Form onSubmit={(e) => submitForm(e)}>
-                <h3>Input Email:</h3>
+                
                 <Input id="input" onChange={(e) => updateEmail(e)}/>
                 <Button type='submit'>Submit</Button>
             </Form>
@@ -71,7 +72,9 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
   )
 }
 
-
+const H3 = styled.h3`
+    padding-bottom: 10px;
+`
 const Div = styled.div`
     width: 100%;
     display: flex;
@@ -82,9 +85,10 @@ const Div = styled.div`
 `
 const Container = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items:center;
-    padding: 20px;
+    /* padding: 20px; */
     width: 100%;
     /* transform:translateY(150px); */
 `
@@ -92,28 +96,38 @@ const Container = styled.div`
 const Form = styled.form`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    background: rgba(216, 213, 207, 0.35);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
     width: 100%;
+    padding: 10px;
 `
 
 const Input = styled.input`
     min-width: 50%;
-    padding: 0px 15px;
+    /* padding: 0px 15px;
     margin: 0px 20px;
     height: 1.7em;
+    border-radius: 20px; */
+    width: 45%;
+    padding: 5px 20px;
+    background: #f3f3f3;
     border-radius: 20px;
-    font-size: 1.7em;
+    border: transparent;
+    font-size: 20px;
     text-align: center;
 `
 
 const Button = styled.button`
-    width: 20%;
-    height: 1.9em;
-    padding: 0px 10px;
+    background: #050505;
     border-radius: 20px;
-    background-color: white;
-    border: 1px solid black;
-    font-size: 1.8em;
+    min-width: 15%;
+    /* height:30px;
+     */
+    padding:5px;
+    font-size: 1.3em;
+    color:white;
     &:hover{
         cursor: pointer;
         transform: scale(1.1);

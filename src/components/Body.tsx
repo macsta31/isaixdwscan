@@ -42,10 +42,17 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
 
 const Container = styled.div`
     display:flex;
+    width: 85%;
+    align-self: center;
+    padding: 15px 30px;
+    background: #EFE9DC;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
     /* align-items: center; */
     /* justify-content: space-between; */
     flex: 1 1 auto;
     /* padding: 50px; */
+    margin:20px;
 
 `
 

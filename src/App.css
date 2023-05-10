@@ -4,14 +4,13 @@ body{
   padding:0;
   min-height: 100vh;
   /* background: rgb(2,0,36); */
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 60%, rgba(0,78,255,1) 100%);
+  background-color: #FFF8E8;
 }
 
 *{
   margin:0;
   padding:0;
   font-family: 'Lato', sans-serif;
-  color: white;
 }
 button, input{
   color: black;

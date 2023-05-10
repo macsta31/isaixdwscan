@@ -52,11 +52,11 @@ interface ThreatBarProps {
   `
 
   const Div = styled.div`
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     border-radius: 20px;
     padding: 30px;
   `
