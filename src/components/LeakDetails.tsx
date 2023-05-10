@@ -6,19 +6,35 @@ import Data from '../types/Data.types';
 import { emptyData } from '../data/Data.instance';
 import LeakClassItem from './LeakClassItem';
 
-
+/**
+ * Props for leakDetails
+ * leakData: Data object (types folder)
+ * errorMessage: string to display no results message
+ */
 interface LeakDetailsProps{
     leakData: Data
     errorMessage: string | null;
 }
-
+/**
+ * HashMap: dataClass: string -> threatLevel: number
+ */
 type DataClassThreatMap = { [dataClass: string]: number };
 
+/**
+ * Function to get data from csv file
+ * @param url 
+ * @returns text format of csv file
+ */
 async function fetchCSVFile(url: string): Promise<string> {
     const response = await fetch(url);
     return await response.text();
 }
-  
+
+/**
+ * 
+ * @param csvUrl url to csv file
+ * @returns converts csv file to DataClassThreatMap
+ */
 async function parseCSVToHashMap(csvUrl: string): Promise<DataClassThreatMap> {
     const content = await fetchCSVFile(csvUrl);
     const rows = content.split('\n');
@@ -32,6 +48,12 @@ async function parseCSVToHashMap(csvUrl: string): Promise<DataClassThreatMap> {
     return hashMap;
 }
 
+/**
+ * Algorithm to generate a threat level (0 -> 100) for combination of dataclasses present in leak
+ * @param dataclasses dataClasses from leak details
+ * @param hashMap threatMap
+ * @returns Promise<number> between 0 and 100 representing threat level
+ */
 const getGlobalThreatLevel = async (dataclasses: string[], hashMap: DataClassThreatMap): Promise<number> => {
     let totalThreat = 0;
   
@@ -45,18 +67,37 @@ const getGlobalThreatLevel = async (dataclasses: string[], hashMap: DataClassThr
     return normalizedThreat;
 };
 
+
+/**
+ * Leak Details Component
+ * Where all info about the selected Link is presented
+ * Breach Date, Service name, Leaked Data Classes, Threat level presented as Spectrum
+ */
 const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
 
+    // state to hold the generated hashmap
     const [hashMap, setHashMap] = useState<DataClassThreatMap>({});
+
+    // state to hold the threat level of dataclass combination
     const [globalThreat, setGlobalThreat] = useState(0)
+
+    // state to hold toggle value for the info tab
     const [infoToggle, setInfoToggle] = useState(false)
 
+    /**
+     * Callback to load hashmap into state
+     */
     const loadHashMap = useCallback(async () => {
         const csvUrl = '/threatLevels.csv'; // Replace this with the URL to your CSV file
         const hashMap = await parseCSVToHashMap(csvUrl);
         setHashMap(hashMap);
     }, []);
 
+    /**
+     * On Component load: 
+     * Loads hashmap
+     * Sets gloabl threat
+     */
     useEffect(() => {
         loadHashMap();
         getGlobalThreatLevel(leakData.DataClasses, hashMap).then((threatLevel) => {
@@ -77,6 +118,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
   return (
     <Container>
         <H2Title>Leak Details</H2Title>
+        {/* If leak data is found -> render leak data */}
         {
             leakData && leakData?.Name !== '' ? 
             <>
@@ -113,7 +155,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
             : 
             <></>
         }
-
+        {/* Presents no Leak Found message if api returns an error */}
         {
             errorMessage ?
 

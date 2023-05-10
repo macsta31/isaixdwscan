@@ -1,12 +1,21 @@
 import styled from 'styled-components'
 import Data from '../types/Data.types';
 
-
+/**
+ * Props for Leak Component
+ * leak: Data Object (types folder)
+ * getData: function to get data of the clicked leak --> called in Body Component
+ */
 interface LeakProps{
     leak: Data
     getData: (data:Data) => void
 }
 
+/**
+ * Leak Component
+ * Displays leak name
+ * onClick attribute to display information in sister component (leakDetails)
+ */
 const Leak: React.FC<LeakProps> = ({leak, getData}) => {
   return (
     <Container onClick={() => getData(leak)}>

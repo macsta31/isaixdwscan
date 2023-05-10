@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+
+/**
+ * Footer for Webpage
+ * Gives credit to HIBP API for data in accordance with their documentation
+ */
 const Footer = () => {
   return (
     <Div>

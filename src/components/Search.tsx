@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { useState } from 'react'
 
+
+/*Props for Search Component
+callAPI: function to call our proxy server --> passed up to Layout for final call
+clearLeaks: function to reset leaks --> passed up to Layout for final call */
 interface SearchProps {
     callAPI: (email:string) => Promise<void>
     clearLeaks: () => void
@@ -8,9 +12,18 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
     
+    // email state to hold value in search bar
     const [email, setEmail] = useState('')
+
+    // email error state for form validation
     const [noEmailError, setNoEmailError] = useState(false)
 
+    /**Form Submittion Function
+     * sends form value (held in email state) to callAPI function which is executed in Layout
+     * does form validation
+     * clearsLeaks before calling api
+     * resets form after api call
+     */
     const submitForm = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const form = e.currentTarget as HTMLFormElement
@@ -32,6 +45,7 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
         
     }
 
+    // updates email state on form change
     const updateEmail = (e:React.ChangeEvent<HTMLInputElement>)=> {
         e.preventDefault()
         e.target.style.border = "1px solid black"
