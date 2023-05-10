@@ -1,24 +1,6 @@
 import styled from 'styled-components'
+import Data from '../types/Data.types';
 
-interface Data{
-    AddedDate: string;
-    BreachDate: string;
-    DataClasses: string[];
-    Description: string;
-    Domain: string;
-    IsFabricated: boolean;
-    isMalware: boolean;
-    isRetired: boolean;
-    isSensitive: boolean;
-    IsSpamList: boolean;
-    IsVerified: boolean;
-    LogoPath: string;
-    ModifiedDate: string;
-    Name: string;
-    PwnCount: string;
-    Title: string;
-
-}
 
 interface LeakProps{
     leak: Data

@@ -24,7 +24,7 @@ interface ThreatBarProps {
   const ThreatBarContainer = styled.div`
     position: relative;
     width: 100%;
-    z-index: 3;
+    /* z-index: 3; */
   `
   const ArrowContainer = styled.div`
     position: absolute;

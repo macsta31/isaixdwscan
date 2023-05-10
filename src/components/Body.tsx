@@ -1,53 +1,15 @@
 import LeakDetails from './LeakDetails'
 import Leaks from './Leaks'
 import styled from 'styled-components'
+import Data from '../types/Data.types'
+import {emptyData}  from '../data/Data.instance'
 
 import { useEffect, useState } from 'react'
-
-interface Data{
-    AddedDate: string;
-    BreachDate: string;
-    DataClasses: string[];
-    Description: string;
-    Domain: string;
-    IsFabricated: boolean;
-    isMalware: boolean;
-    isRetired: boolean;
-    isSensitive: boolean;
-    IsSpamList: boolean;
-    IsVerified: boolean;
-    LogoPath: string;
-    ModifiedDate: string;
-    Name: string;
-    PwnCount: string;
-    Title: string;
-
-}
 
 interface BodyProps{
     leaks: Data[]
     errorMessage: string | null;
 }
-
-
-const emptyData: Data = {
-    AddedDate: '',
-    BreachDate: '',
-    DataClasses: [],
-    Description: '',
-    Domain: '',
-    IsFabricated: false,
-    isMalware: false,
-    isRetired: false,
-    isSensitive: false,
-    IsSpamList: false,
-    IsVerified: false,
-    LogoPath: '',
-    ModifiedDate: '',
-    Name: '',
-    PwnCount: '',
-    Title: '',
-};
 
 
 const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {

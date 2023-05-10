@@ -2,45 +2,10 @@ import styled from 'styled-components'
 import { useCallback, useEffect, useState } from 'react';
 import ThreatBar from './ThreatBar';
 import  { AiFillQuestionCircle } from 'react-icons/ai'
+import Data from '../types/Data.types';
+import { emptyData } from '../data/Data.instance';
+import LeakClassItem from './LeakClassItem';
 
-interface Data{
-    AddedDate: string;
-    BreachDate: string;
-    DataClasses: string[];
-    Description: string;
-    Domain: string;
-    IsFabricated: boolean;
-    isMalware: boolean;
-    isRetired: boolean;
-    isSensitive: boolean;
-    IsSpamList: boolean;
-    IsVerified: boolean;
-    LogoPath: string;
-    ModifiedDate: string;
-    Name: string;
-    PwnCount: string;
-    Title: string;
-
-}
-
-const emptyData: Data = {
-    AddedDate: '',
-    BreachDate: '',
-    DataClasses: [],
-    Description: '',
-    Domain: '',
-    IsFabricated: false,
-    isMalware: false,
-    isRetired: false,
-    isSensitive: false,
-    IsSpamList: false,
-    IsVerified: false,
-    LogoPath: '',
-    ModifiedDate: '',
-    Name: '',
-    PwnCount: '',
-    Title: '',
-};
 
 interface LeakDetailsProps{
     leakData: Data
@@ -98,6 +63,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
             setGlobalThreat(threatLevel)
             // console.log('Global threat level:', threatLevel);
         });
+        setInfoToggle(false)
 
     }, [loadHashMap, leakData]);
 
@@ -122,7 +88,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
                     <List>
                         {
                             (leakData as Data).DataClasses.map((dataclass, key) => (
-                                <ListItem key={key} >{dataclass}</ListItem>
+                                <LeakClassItem key={key} dataclass={dataclass} url={leakData.Domain} />
                             ))
                         }
                     </List>
@@ -130,9 +96,10 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
                     {
                         infoToggle ?
                         <SubContainerInfo>
-                            <TextBlurb>
-                                This is all of the data that was present in the <b>{leakData?.Name}</b> data leak that we found.<br/> If your <i>Password</i> is among these categories, you can change it <a href={`https://www.${leakData.Domain}`}>here</a>
-                            </TextBlurb>
+                            <TextBlurb 
+                                dangerouslySetInnerHTML={{
+                                __html: leakData.Description,
+                            }} />
                         </SubContainerInfo>
                         :
                         <></>
@@ -152,7 +119,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
 
             <NoLeakContainer>
                 <NoLeakTitle>No Leaks Found!</NoLeakTitle>
-                <NoLeakMessage>No leaks for this email address were found on the deep web.<br/>This is not a guarantee of safety but a we think you are doing pretty good</NoLeakMessage>
+                <NoLeakMessage>No leaks for this email address were found on the deep web.<br/>This is not a guarantee of safety but we think you are doing pretty good</NoLeakMessage>
                 <p>Or maybe you spelled your email wrong :O</p>
             </NoLeakContainer>
             :
@@ -164,7 +131,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
 
 const TextBlurb = styled.p`
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.8;
     margin: 20px;
 `
 
@@ -172,7 +139,7 @@ const InfoPanel = styled.div`
     position: absolute;
     top:0;
     right:0;
-    margin: 30px;
+    margin: 10px;
     z-index: 3;
 
     &:hover{
@@ -191,7 +158,8 @@ const NoLeakContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    flex: 1 1 auto;
+    /* flex: 1 1 auto; */
+    padding: 80px 30px;
     border: 5px solid transparent;
     border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
     border-image-slice: 1;
@@ -200,7 +168,7 @@ const NoLeakContainer = styled.div`
 
 const NoLeakTitle = styled.h1`
     font-size: 4em;
-    padding: 40px;
+    /* padding-bottom: 40px; */
 
 `
 
@@ -240,6 +208,7 @@ const List = styled.ul`
     font-size: 1.2em;
     list-style-type: none;
     text-align: center;
+    padding-bottom: 20px;
 `
 
 const ListItem = styled.li`
@@ -253,7 +222,7 @@ const SubContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    border: 4px solid black;
+    /* border: 4px solid black; */
     border-radius: 20px;
     width: 60%;
 `
@@ -264,12 +233,14 @@ const SubContainerInfo = styled.div`
     left:0;
     background-color: #0720c1;
     opacity: 0.99;
-    width:100%;
-    height:100%;
+    max-width:100%;
+    min-height:100%;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 3px solid black;
+    padding: 20px;
 `
 
 const H3 = styled.h3`

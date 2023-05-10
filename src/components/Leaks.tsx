@@ -1,45 +1,9 @@
 import styled from 'styled-components'
 import Leak from './Leak';
 import { useEffect } from 'react';
+import Data from '../types/Data.types';
+import { emptyData } from '../data/Data.instance';
 
-interface Data{
-    AddedDate: string;
-    BreachDate: string;
-    DataClasses: string[];
-    Description: string;
-    Domain: string;
-    IsFabricated: boolean;
-    isMalware: boolean;
-    isRetired: boolean;
-    isSensitive: boolean;
-    IsSpamList: boolean;
-    IsVerified: boolean;
-    LogoPath: string;
-    ModifiedDate: string;
-    Name: string;
-    PwnCount: string;
-    Title: string;
-
-}
-
-const emptyData: Data = {
-    AddedDate: '',
-    BreachDate: '',
-    DataClasses: [],
-    Description: '',
-    Domain: '',
-    IsFabricated: false,
-    isMalware: false,
-    isRetired: false,
-    isSensitive: false,
-    IsSpamList: false,
-    IsVerified: false,
-    LogoPath: '',
-    ModifiedDate: '',
-    Name: '',
-    PwnCount: '',
-    Title: '',
-};
 
 interface LeaksProps{
     leaks: Data[]
