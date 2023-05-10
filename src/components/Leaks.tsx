@@ -51,14 +51,17 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
+    padding: 10px;
     /* justify-content: center; */
-    border-right: 3px solid black;
+    /* border-right: 3px solid black; */
+    background: #E7E2D7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
 `
 
 const H2 = styled.h2`
     border-bottom: 3px solid white;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding-bottom: 5px;
 `
 

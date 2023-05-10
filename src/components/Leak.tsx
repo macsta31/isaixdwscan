@@ -28,12 +28,12 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 15px;
     margin: 8px;
-    border: 2px solid black;
-    border-radius: 8px;
-    width: 50%;
-    background-color: #1724d2;
+    width: 75%;
+    background: #DED9CE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 20px;
 
     &:hover{
         cursor: pointer;

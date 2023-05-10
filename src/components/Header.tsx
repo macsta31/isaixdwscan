@@ -15,27 +15,44 @@ Home to the WebPage title and the Search Bar*/
 const Header: React.FC<HeaderProps> = ({callAPI, clearLeaks}) => {
   return (
     <Container>
-        <H1>Dark Web Scanner</H1>
-        <Search callAPI={callAPI} clearLeaks={clearLeaks} />
+        <H1Left>ISAIX</H1Left>
+        <H1Middle>Dark Web Scanner</H1Middle>
+        <Div><Search callAPI={callAPI} clearLeaks={clearLeaks} /></Div>
     </Container>
   )
 }
 
 const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: white;
-    /* font-size: 4em; */
-    padding: 40px 80px 0px 80px;
-    /* margin: 100px 100px 0px 100px; */
-    font-weight: 700;
-    border-bottom: 3px solid black;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
 `
 
-const H1 = styled.h1`
-    font-size: 2em;
+const H1Left = styled.h1`
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  padding: 20px;
+
+`
+
+const H1Middle = styled.div`
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  justify-self: center;
+  align-self: center;
+  font-size: 2em;
+  padding: 20px;
+`
+const Div = styled.div`
+  width: 85%;
+  background-color: #EFE9DC;
+  padding: 15px 30px;
+  border-radius: 20px;
+  grid-column: 1 / 4;
+  grid-row: 2 / 3;
+  justify-self: center;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 export default Header
