@@ -56,6 +56,7 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
     <Div>  
         <Container>
             <Form onSubmit={(e) => submitForm(e)}>
+                <h3>Input Email:</h3>
                 <Input id="input" onChange={(e) => updateEmail(e)}/>
                 <Button type='submit'>Submit</Button>
             </Form>
@@ -98,7 +99,7 @@ const Form = styled.form`
 const Input = styled.input`
     min-width: 50%;
     padding: 0px 15px;
-    margin-right: 20px;
+    margin: 0px 20px;
     height: 1.7em;
     border-radius: 20px;
     font-size: 1.7em;

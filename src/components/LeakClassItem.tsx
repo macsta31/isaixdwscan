@@ -24,7 +24,7 @@ const LeakClassItem: React.FC<LeakClassItemProps> = ({dataclass, url}) => {
                 <ListItem>
                     {dataclass}
                     <Div>
-                        <AiFillWarning color="red" onClick={warnClick}/>
+                        <AiFillWarning size={24} onClick={warnClick}/>
                     </Div>
                     {
                         pwPrompt ? 

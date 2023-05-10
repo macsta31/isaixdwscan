@@ -55,16 +55,40 @@ async function parseCSVToHashMap(csvUrl: string): Promise<DataClassThreatMap> {
  * @returns Promise<number> between 0 and 100 representing threat level
  */
 const getGlobalThreatLevel = async (dataclasses: string[], hashMap: DataClassThreatMap): Promise<number> => {
+    // let totalThreat = 0;
+  
+    // for (const dataClass of dataclasses) {
+    //   const threatLevel = hashMap[dataClass] || 0;
+    //   totalThreat += threatLevel;
+    // }
+  
+    // // Normalize the total threat value between 0 and 100
+    // const normalizedThreat = (totalThreat / (dataclasses.length * 10)) * 100;
+    // return normalizedThreat;
+
+    
+
+    let maxThreat = 0;
     let totalThreat = 0;
-  
-    for (const dataClass of dataclasses) {
-      const threatLevel = hashMap[dataClass] || 0;
-      totalThreat += threatLevel;
+
+    for (const dataClass of dataclasses){
+        const threatLevel = hashMap[dataClass];
+        maxThreat = Math.max(maxThreat, threatLevel)
+        totalThreat += threatLevel
     }
-  
-    // Normalize the total threat value between 0 and 100
-    const normalizedThreat = (totalThreat / (dataclasses.length * 10)) * 100;
-    return normalizedThreat;
+
+    const weightedThreat = (maxThreat * 5 + totalThreat) / 2;
+    const dataClassCountWeight = dataclasses.length * 5;
+
+    let finalThreat = Math.max(weightedThreat + dataClassCountWeight, maxThreat * 5);
+
+    if (
+        (dataclasses.includes("Email addresses") || dataclasses.includes("Usernames")) &&
+        dataclasses.includes("Passwords")
+    ) {
+        finalThreat = Math.max(finalThreat, 80);
+      }
+    return Math.min(finalThreat, 100);
 };
 
 
