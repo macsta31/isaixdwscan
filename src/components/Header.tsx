@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Search from './Search'
 
 /*Props for the Header Component
 callAPI: function that makes the call to our proxy server to get the data for the given email --> Passed to parent component for calling (Layout)
@@ -44,16 +43,6 @@ const H1Middle = styled.div`
   align-self: center;
   font-size: 2em;
   padding: 20px;
-`
-const Div = styled.div`
-  width: 100%;
-  background-color: #EFE9DC;
-  padding: 15px 30px;
-  border-radius: 20px;
-  grid-column: 1 / 4;
-  grid-row: 2 / 3;
-  justify-self: center;
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 export default Header
