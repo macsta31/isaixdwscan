@@ -56,7 +56,8 @@ const Layout = () => {
 const Container = styled.div`
     display:flex;
     flex-direction:column;
-    min-height: 120vh;
+    /* min-height: 120vh; */
+    align-items: center;
 `
 
 export default Layout

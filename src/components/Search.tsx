@@ -76,7 +76,7 @@ const H3 = styled.h3`
     padding-bottom: 10px;
 `
 const Div = styled.div`
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     padding-bottom: 15px;
@@ -105,12 +105,13 @@ const Form = styled.form`
 `
 
 const Input = styled.input`
-    min-width: 50%;
+    width: 500px;
+    /* max-width: 600px; */
     /* padding: 0px 15px;
     margin: 0px 20px;
     height: 1.7em;
     border-radius: 20px; */
-    width: 45%;
+    /* width: 45%; */
     padding: 5px 20px;
     background: #f3f3f3;
     border-radius: 20px;

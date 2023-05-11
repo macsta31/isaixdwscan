@@ -17,7 +17,7 @@ const Div = styled.div`
     display: flex;
     align-items:center;
     justify-content: center;
-    border-top: 3px solid black;
+    /* border-top: 3px solid black; */
     height: 10vh;
 `
 

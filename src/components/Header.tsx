@@ -27,6 +27,8 @@ const Container = styled.div`
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: auto auto;
     align-items: start;
+    max-width: 1400px;
+    width:85%;
 `
 
 const H1Left = styled.h1`
@@ -45,7 +47,7 @@ const H1Middle = styled.div`
   padding: 20px;
 `
 const Div = styled.div`
-  width: 85%;
+  width: 100%;
   background-color: #EFE9DC;
   padding: 15px 30px;
   border-radius: 20px;

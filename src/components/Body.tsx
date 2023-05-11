@@ -43,6 +43,7 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
 const Container = styled.div`
     display:flex;
     width: 85%;
+    max-width: 1400px;
     align-self: center;
     padding: 15px 30px;
     background: #EFE9DC;
@@ -50,7 +51,8 @@ const Container = styled.div`
     border-radius: 20px;
     /* align-items: center; */
     /* justify-content: space-between; */
-    flex: 1 1 auto;
+    min-height: 75vh;
+    /* flex: 1 1 auto; */
     /* padding: 50px; */
     margin:20px;
 
