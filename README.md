@@ -15,7 +15,7 @@ The primary goal of the Dark Web Scanner is to empower users with knowledge abou
 
 Dark Web Scanner is an invaluable tool for internet users who wish to take control of their personal data security. By providing an easy-to-use platform for identifying data breaches and their associated risks, our web app helps users safeguard their online presence and minimize potential threats.
 
-** Usage
+## Usage
 Loading into the website, you will see a search bar and submit buttton. This is where you will input your email and hit submit to view leaks where your email was present.
 
 You will see a screen similar to the following, with all the leaks present on the left side of the screen.
@@ -54,4 +54,29 @@ The primary source of data for Dark Web Scanner is the Have I Been Pwned (HIBP) 
 The HIBP API provides access to their extensive database of breached email addresses and associated details, such as the companies/services involved, the date of the breach, and the specific data classes that have been compromised. By leveraging the HIBP API, our web app can provide users with accurate and up-to-date information about data breaches that may affect their personal information.
 
 Using the HIBP API as our data source ensures that Dark Web Scanner offers users reliable and comprehensive information, empowering them to take control of their personal data security and respond proactively to potential threats.
+
+## Pricing
+Our project uses the "Have I Been Pwned" API which operates on a tiered pricing model based on the number of requests per minute. Below are the details for each tier:
+
+# Monthly Pricing
+1. **Level 1**: Priced at $3.50 per month, allowing up to 10 requests per minute.
+2. **Level 2**: Priced at $15 per month, allowing up to 50 requests per minute.
+3. **Level 3**: Priced at $25 per month, allowing up to 100 requests per minute.
+4. **Level 4**: Priced at $100 per month, allowing up to 500 requests per minute.
+# Yearly Pricing
+1. **Level 1**: Priced at $35 per year, allowing up to 10 requests per minute.
+2. **Level 2**: Priced at $150 per year, allowing up to 50 requests per minute.
+3. **Level 3**: Priced at $250 per year, allowing up to 100 requests per minute.
+4. **Level 4**: Priced at $1000 per year, allowing up to 500 requests per minute.
+Please note, the request limits mentioned above refer to the "Have I Been Pwned" API usage within our project. For more information or for direct access, visit haveibeenpwned.com.
+
+
+
+## License
+This project integrates data obtained from the "Have I Been Pwned" API.
+
+## Acknowledgment
+In accordance with the Creative Commons Attribution 4.0 International License under which the "Have I Been Pwned" API is provided, we acknowledge and attribute this data source within our project. Anywhere data derived from the "Have I Been Pwned" API is used, including in breach or paste searches and in the representation of breach descriptions, clear and visible attribution to Have I Been Pwned is given, along with a link to haveibeenpwned.com.
+
+Please note, this requirement for attribution does not extend to the Pwned Passwords API. While acknowledging its use is not obligatory, it is appreciated.
 
