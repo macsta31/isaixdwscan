@@ -42,7 +42,7 @@ const Layout = () => {
 
     const callAPIDomain = async (domain: string): Promise<void> => {
       try {
-        const response = await fetch(`https://dw-proxy-server.vercel.app/breaches/${domain}`);
+        const response = await fetch(`https://dw-proxy-server.vercel.app/api/breaches?domain=${domain}`);
         const data = await response.json();
     
         if (!response.ok) {
