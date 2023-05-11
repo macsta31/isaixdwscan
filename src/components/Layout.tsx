@@ -21,7 +21,7 @@ const Layout = () => {
     Make call to our proxy server and sets error and leaks accordingly from payload */
     const callAPIBreachedAccount = async (email: string): Promise<void> => {
         try {
-          const response = await fetch(`https://isaixdwproxy.onrender.com/breachedaccount/${email}`);
+          const response = await fetch(`https://dw-proxy-server.vercel.app/api/breachedaccount?email=${email}`);
           const data = await response.json();
       
           if (!response.ok) {
@@ -42,7 +42,7 @@ const Layout = () => {
 
     const callAPIDomain = async (domain: string): Promise<void> => {
       try {
-        const response = await fetch(`https://isaixdwproxy.onrender.com/breaches/${domain}`);
+        const response = await fetch(`https://dw-proxy-server.vercel.app/breaches/${domain}`);
         const data = await response.json();
     
         if (!response.ok) {
@@ -71,6 +71,7 @@ const Layout = () => {
     return (
     <Container>
         <Header />
+        {error}
         <Search callAPIBreachedAccount={callAPIBreachedAccount} clearLeaks={clearLeaks} callAPIDomain={callAPIDomain} />
         {
           leaks.length > 0  || error ? 

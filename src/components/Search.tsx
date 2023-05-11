@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useState } from 'react'
 
 
@@ -80,7 +80,7 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
         setDomainScan(!domainScan)
     }
   return (
-    <Div>  
+    <Div id='searchdiv'>  
         <Container>
             <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
             <H3>Enter {domainScan ? <>domain</> : <>email</>} to begin dark web scan</H3>
@@ -108,6 +108,9 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
   )
 }
 
+
+
+
 const SwitchMode = styled.div`
     position: absolute;
     top:0;
@@ -134,7 +137,7 @@ const H3 = styled.h3`
     padding-bottom: 30px;
 `
 const Div = styled.div`
-position: relative;
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -152,6 +155,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items:center;
+    padding: 40px;
 `
 
 const Form = styled.form`

@@ -1,6 +1,6 @@
 import LeakDetails from './LeakDetails'
 import Leaks from './Leaks'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Data from '../types/Data.types'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import {emptyData}  from '../data/Data.instance'
@@ -47,7 +47,18 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
     )
 }
 
+const scaleUp = keyframes`
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+`;
+
+
 const Container = styled.div`
+    animation: ${scaleUp} 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     position:relative;
     display:flex;
     width: 100%;
