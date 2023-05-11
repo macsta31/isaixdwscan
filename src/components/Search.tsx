@@ -6,14 +6,16 @@ import { useState } from 'react'
 callAPI: function to call our proxy server --> passed up to Layout for final call
 clearLeaks: function to reset leaks --> passed up to Layout for final call */
 interface SearchProps {
-    callAPI: (email:string) => Promise<void>
+    callAPIBreachedAccount: (email:string) => Promise<void>
+    callAPIDomain: (domain:string) => Promise<void>
     clearLeaks: () => void
 }
 
-const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
+const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, callAPIDomain}) => {
     
     // email state to hold value in search bar
-    const [email, setEmail] = useState('')
+    const [input, setInput] = useState('')
+    const [domainScan, setDomainScan] = useState(false)
 
     // email error state for form validation
     const [noEmailError, setNoEmailError] = useState(false)
@@ -24,43 +26,77 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
      * clearsLeaks before calling api
      * resets form after api call
      */
-    const submitForm = (e:React.FormEvent<HTMLFormElement>) => {
+    const submitFormBreach = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const form = e.currentTarget as HTMLFormElement
-        const input = document.getElementById("input")
-        const inputElement = input as HTMLFormElement
+        const inputBar = document.getElementById("input")
+        const inputElement = inputBar as HTMLFormElement
         const formValue = inputElement.value
 
         if(formValue === ''){
-            const input = document.getElementById("input")
-            if(input !== null){
+            const inputBar = document.getElementById("input")
+            if(inputBar !== null){
                 setNoEmailError(true);
-                input.style.border = "5px solid red"
+                inputBar.style.border = "5px solid red"
             }
             clearLeaks()
             return;
         }
-        callAPI(email)
+        callAPIBreachedAccount(input)
+        form.reset()
+        
+    }
+
+    const submitFormDomain = (e:React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const form = e.currentTarget as HTMLFormElement
+        const inputBar = document.getElementById("input")
+        const inputElement = inputBar as HTMLFormElement
+        const formValue = inputElement.value
+
+        if(formValue === ''){
+            const inputBar = document.getElementById("input")
+            if(inputBar !== null){
+                setNoEmailError(true);
+                inputBar.style.border = "5px solid red"
+            }
+            clearLeaks()
+            return;
+        }
+        callAPIDomain(input)
         form.reset()
         
     }
 
     // updates email state on form change
-    const updateEmail = (e:React.ChangeEvent<HTMLInputElement>)=> {
+    const updateInput = (e:React.ChangeEvent<HTMLInputElement>)=> {
         e.preventDefault()
         e.target.style.border = "1px solid black"
         setNoEmailError(false);
-        setEmail(e.target.value)
+        setInput(e.target.value)
+    }
+
+    const switchMode = () => {
+        setDomainScan(!domainScan)
     }
   return (
     <Div>  
         <Container>
-            <H3>Enter email to begin dark web scan</H3>
-            <Form onSubmit={(e) => submitForm(e)}>
-                
-                <Input id="input" onChange={(e) => updateEmail(e)}/>
-                <Button type='submit'>Submit</Button>
-            </Form>
+            <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
+            <H3>Enter {domainScan ? <>domain</> : <>email</>} to begin dark web scan</H3>
+            {
+                !domainScan ?
+                <Form onSubmit={(e) => submitFormBreach(e)}>
+                        <Input id="input" onChange={(e) => updateInput(e)}/>
+                        <Button type='submit'>Submit</Button>
+                </Form>
+            :
+                <Form onSubmit={(e) => submitFormDomain(e)}>
+                    <Input id="input" onChange={(e) => updateInput(e)}/>
+                    <Button type='submit'>Submit</Button>            
+                </Form>
+            }
+            
         </Container>
         {
             noEmailError ?
@@ -72,25 +108,50 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
   )
 }
 
+const SwitchMode = styled.div`
+    position: absolute;
+    top:0;
+    right:0;
+    margin: 10px;
+    border-radius:20px;
+    background: rgba(216, 213, 207, 0.35);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 10px 20px;
+    font-size: 12px;
+    &:hover{
+        cursor: pointer;
+        transition: 1s;
+        scale: 1.1;
+    }
+
+    &:not(:hover){
+        transition: 1s;
+    }
+
+`
+
 const H3 = styled.h3`
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 `
 const Div = styled.div`
-    /* width: 100%; */
+position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 15px;
+    padding:15px 0px;
     justify-content: center;
     align-items:center;
+    border-radius: 20px;
+    background-color:rgba(235, 232, 226, 0.35);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+
 `
 const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    /* padding: 20px; */
-    width: 100%;
-    /* transform:translateY(150px); */
 `
 
 const Form = styled.form`
@@ -106,26 +167,19 @@ const Form = styled.form`
 
 const Input = styled.input`
     width: 500px;
-    /* max-width: 600px; */
-    /* padding: 0px 15px;
-    margin: 0px 20px;
-    height: 1.7em;
-    border-radius: 20px; */
-    /* width: 45%; */
     padding: 5px 20px;
     background: #f3f3f3;
     border-radius: 20px;
     border: transparent;
     font-size: 20px;
     text-align: center;
+    margin: 0px 20px;
 `
 
 const Button = styled.button`
     background: #050505;
     border-radius: 20px;
     min-width: 15%;
-    /* height:30px;
-     */
     padding:5px;
     font-size: 1.3em;
     color:white;

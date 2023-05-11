@@ -14,6 +14,7 @@ import LeakClassItem from './LeakClassItem';
 interface LeakDetailsProps{
     leakData: Data
     errorMessage: string | null;
+    infoTab: boolean
 }
 /**
  * HashMap: dataClass: string -> threatLevel: number
@@ -97,7 +98,7 @@ const getGlobalThreatLevel = async (dataclasses: string[], hashMap: DataClassThr
  * Where all info about the selected Link is presented
  * Breach Date, Service name, Leaked Data Classes, Threat level presented as Spectrum
  */
-const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
+const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTab}) => {
 
     // state to hold the generated hashmap
     const [hashMap, setHashMap] = useState<DataClassThreatMap>({});
@@ -133,10 +134,12 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
     }, [loadHashMap, leakData]);
 
     if(errorMessage){
+
         leakData = emptyData
     }
 
     const toggleInfo = () => {
+        console.log(1)
         setInfoToggle(!infoToggle)
     }
   return (
@@ -144,60 +147,86 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
         <H2Title>Leak Details</H2Title>
         {/* If leak data is found -> render leak data */}
         {
-            leakData && leakData?.Name !== '' ? 
+            !infoTab ?
             <>
-                
-                <Div>
-                {
-                    infoToggle ?
-                    <SubContainerInfo>
-                        <InfoPanel onClick={()=>toggleInfo()}> <AiFillQuestionCircle size={36} /> </InfoPanel>
-                        <TextBlurb 
-                            dangerouslySetInnerHTML={{
-                            __html: leakData.Description,
-                        }} />
-                    </SubContainerInfo>
-                    :
-                    <>
-                        <InfoPanel onClick={()=>toggleInfo()}> <AiFillQuestionCircle size={36} /> </InfoPanel>
-                        <SiteName>{leakData.Name}</SiteName>
-                        <H3>Breached On: {leakData.BreachDate}</H3>
-                        <SubContainer>
-                            <H3Leak>Leaked Data</H3Leak>
+            {
+                leakData && leakData?.Name !== '' ? 
+                <>
+                    
+                    <Div>
+                    {
+                        infoToggle ?
+                        <SubContainerInfo>
+                            <InfoPanel onClick={()=>toggleInfo()}> <AiFillQuestionCircle size={24} /> </InfoPanel>
+                            <TextBlurb 
+                                dangerouslySetInnerHTML={{
+                                __html: leakData.Description,
+                            }} />
+                        </SubContainerInfo>
+                        :
+                        <>
+                            <InfoPanel onClick={()=>toggleInfo()}> <AiFillQuestionCircle size={24} /> </InfoPanel>
+                            <SiteName>{leakData.Name}</SiteName>
+                            <H3>Breached On: {leakData.BreachDate}</H3>
+                            <SubContainer>
+                                <H3Leak>Leaked Data</H3Leak>
+                                
+                                <List>
+                                    {
+                                        (leakData as Data).DataClasses.map((dataclass, key) => (
+                                            <LeakClassItem key={key} dataclass={dataclass} url={leakData.Domain} />
+                                        ))
+                                    }
+                                </List>
                             
-                            <List>
-                                {
-                                    (leakData as Data).DataClasses.map((dataclass, key) => (
-                                        <LeakClassItem key={key} dataclass={dataclass} url={leakData.Domain} />
-                                    ))
-                                }
-                            </List>
-                        
-                        </SubContainer>
-                    </>
-                }
-                
-                </Div>
-                <ThreatBarDiv>
-                    <ThreatBar globalThreat={globalThreat}/>
-                </ThreatBarDiv>
-                
+                            </SubContainer>
+                        </>
+                    }
+                    
+                    </Div>
+                    <ThreatBarDiv>
+                        <ThreatBar globalThreat={globalThreat}/>
+                    </ThreatBarDiv>
+                    
 
-                
+                    
 
 
+                </>
+                : 
+                <></>
+            }
             </>
-            : 
-            <></>
+            :
+            <DivInfo>
+                <SubContainerInfoTab>
+
+                            <SiteName>Name of the site</SiteName>
+                            <H3>Date of Leak</H3>
+                            <SubContainer>
+                                <H3Leak>Leaked Data</H3Leak>
+                                
+                                <List>
+                                    Categories of data that were present in the leak.
+                                </List>
+                            
+                            </SubContainer>
+                </SubContainerInfoTab>
+                <ThreatBarDivInfo>
+                    This is where you will find the approximate threat level based on the combination of data classes that were present in the leak<br/>
+                    We use our own proprietary algorithm to calculate this threat level.
+                    <ThreatBar globalThreat={globalThreat}/>
+                </ThreatBarDivInfo>
+            </DivInfo>
         }
         {/* Presents no Leak Found message if api returns an error */}
         {
-            errorMessage ?
+            errorMessage === "Error: Error Not Found" ? 
 
             <NoLeakContainer>
                 <NoLeakTitle>No Leaks Found!</NoLeakTitle>
-                <NoLeakMessage>No leaks for this email address were found on the deep web.<br/>This is not a guarantee of safety but we think you are doing pretty good</NoLeakMessage>
-                <p>Or maybe you spelled your email wrong :O</p>
+                <NoLeakMessage>No leaks for this address were found on the deep web.<br/>This is not a guarantee of safety but we think you are doing pretty good</NoLeakMessage>
+                <p>Or maybe you it wrong :O</p>
             </NoLeakContainer>
             :
             <></>
@@ -206,6 +235,37 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage}) => {
   )
 }
 
+const SubContainerInfoTab = styled.div`
+    background: #D6D0C7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+`
+
+const ThreatBarDivInfo = styled.div`
+    background: #D6D0C7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    width:100%;
+    margin-top: 10px;
+    text-align: center;
+    padding: 20px 10px;
+`
+const DivInfo = styled.div`
+    
+    border-radius: 20px;
+    width: 90%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+`
 
 const ThreatBarDiv = styled.div`
     background: #D6D0C7;
@@ -263,6 +323,7 @@ const NoLeakContainer = styled.div`
     border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
     border-image-slice: 1;
     border-radius: 20px;
+    margin: 0px 20px;
 `
 
 const NoLeakTitle = styled.h1`
@@ -281,11 +342,8 @@ const NoLeakMessage = styled.p`
 const Container = styled.div`
     display:flex;
     flex-direction: column;
-    /* overflow: scroll; */
-    padding: 10px;
-    margin-left: 30px;
-    /* align-items:center; */
-    /* justify-content: center; */
+    margin: 30px;
+    padding:20px 0px;
     align-items:center;
     width: 100%;
     background: #E7E2D7;
@@ -295,12 +353,11 @@ const Container = styled.div`
 
 const H2Title = styled.h2`
     border-bottom: 3px solid white;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     padding-bottom: 5px;
 `
 
 const SiteName = styled.h2`
-    /* padding-bottom: 10px; */
     font-size: 24px;
 `
 
@@ -319,17 +376,12 @@ const SubContainer = styled.div`
     height: min-content;
     flex-direction: column;
     align-items: center;
-    /* padding: 20px; */
-    /* border: 4px solid black; */
     border-radius: 20px;
     width: 100%;
 `
 
 const SubContainerInfo = styled.div`
-    /* position: absolute; */
-    /* top:0;
-    left:0; */
-    /* background-color: #0720c1; */
+
     opacity: 0.99;
     max-width:100%;
     min-height:100%;
@@ -337,7 +389,6 @@ const SubContainerInfo = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 3px solid black; */
     padding: 20px;
 `
 

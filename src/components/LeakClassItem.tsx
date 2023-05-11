@@ -10,7 +10,6 @@ interface LeakClassItemProps {
 const LeakClassItem: React.FC<LeakClassItemProps> = ({dataclass, url}) => {
 
     const [pwPrompt, setPwPrompt] = useState(false);
-    console.log(url)
 
     const warnClick = () => {
         setPwPrompt(!pwPrompt)

@@ -2,6 +2,7 @@ import Header from "./Header"
 import Body from "./Body"
 import styled from 'styled-components'
 import Footer from "./Footer"
+import Search from "./Search"
 import { useState } from "react"
 
 /*Layout Component
@@ -18,7 +19,7 @@ const Layout = () => {
     input: email: string
     output: Promise<>
     Make call to our proxy server and sets error and leaks accordingly from payload */
-    const callAPI = async (email: string): Promise<void> => {
+    const callAPIBreachedAccount = async (email: string): Promise<void> => {
         try {
           const response = await fetch(`https://isaixdwproxy.onrender.com/breachedaccount/${email}`);
           const data = await response.json();
@@ -38,6 +39,30 @@ const Layout = () => {
           }
         }
     };
+
+    const callAPIDomain = async (domain: string): Promise<void> => {
+      try {
+        const response = await fetch(`https://isaixdwproxy.onrender.com/breaches/${domain}`);
+        const data = await response.json();
+    
+        if (!response.ok) {
+          setError(`Error: ${data.message}`);
+          setLeaks([])
+        } else if (data.length == 0){
+          throw new Error("Error Not Found")
+        } 
+        else {
+          setLeaks(data);
+          setError(null);
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(`Error: ${error.message}`);
+        } else {
+          setError('An unknown error occurred.');
+        }
+      }
+  };
     // resets leaks state
     const clearLeaks = (): void => {
         setLeaks([])
@@ -45,9 +70,15 @@ const Layout = () => {
     // Returns one main container for the webpage with a header, body and footer
     return (
     <Container>
-        <Header callAPI={callAPI} clearLeaks={clearLeaks} />
-
-        <Body leaks={leaks} errorMessage={error} />
+        <Header />
+        <Search callAPIBreachedAccount={callAPIBreachedAccount} clearLeaks={clearLeaks} callAPIDomain={callAPIDomain} />
+        {
+          leaks.length > 0  || error ? 
+          <Body leaks={leaks} errorMessage={error} />
+          :
+          <></>
+        }
+        
         <Footer />
     </Container>
     )
@@ -56,8 +87,11 @@ const Layout = () => {
 const Container = styled.div`
     display:flex;
     flex-direction:column;
-    /* min-height: 120vh; */
+    min-height: 100vh;
     align-items: center;
+    justify-content: space-evenly;
+    width:90%;
+    margin:auto;
 `
 
 export default Layout

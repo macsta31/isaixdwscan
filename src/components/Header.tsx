@@ -5,19 +5,18 @@ import Search from './Search'
 callAPI: function that makes the call to our proxy server to get the data for the given email --> Passed to parent component for calling (Layout)
 clearLeaks: function to reset leaks when a new email is queried --> Passes to parent component for calling (Layout) */
 
-interface HeaderProps{
-    callAPI: (email:string) => Promise<void>;
-    clearLeaks: () => void
-}
+// interface HeaderProps{
+//     callAPI: (email:string) => Promise<void>;
+//     clearLeaks: () => void
+// }
 /*Header Component
 Home to the WebPage title and the Search Bar*/
 
-const Header: React.FC<HeaderProps> = ({callAPI, clearLeaks}) => {
+const Header = () => {
   return (
     <Container>
         <H1Left>ISAIX</H1Left>
         <H1Middle>Dark Web Scanner</H1Middle>
-        <Div><Search callAPI={callAPI} clearLeaks={clearLeaks} /></Div>
     </Container>
   )
 }
