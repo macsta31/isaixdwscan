@@ -21,14 +21,6 @@ const Layout = () => {
     const callAPI = async (email: string): Promise<void> => {
         try {
           const response = await fetch(`https://isaixdwproxy.onrender.com/breachedaccount/${email}`);
-          // const response = await fetch(`https://haveibeenpwned.com/api/v3/breachedaccount/${email}`,{
-          //   // mode: 'no-cors',
-          //   headers: {
-          //     'User-Agent': 'YourAppName',
-          //     // Add your API key, if you have one
-          //     'hibp-api-key': 'd6c5fbdd8570474f90ac68b6f17e61f4',
-          //   },
-          // })
           const data = await response.json();
       
           if (!response.ok) {

@@ -30,7 +30,7 @@ const Search: React.FC<SearchProps> = ({callAPI, clearLeaks}) => {
         const input = document.getElementById("input")
         const inputElement = input as HTMLFormElement
         const formValue = inputElement.value
-        console.log(formValue)
+
         if(formValue === ''){
             const input = document.getElementById("input")
             if(input !== null){
