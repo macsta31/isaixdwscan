@@ -28,10 +28,13 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
      */
     const submitFormBreach = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        console.log(e)
+
         const form = e.currentTarget as HTMLFormElement
         const inputBar = document.getElementById("input")
         const inputElement = inputBar as HTMLFormElement
         const formValue = inputElement.value
+        console.log(formValue)
 
         if(formValue === ''){
             const inputBar = document.getElementById("input")
@@ -81,23 +84,25 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
     }
   return (
     <Div id='searchdiv'>  
-        <Container>
-            <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
-            <H3>Enter {domainScan ? <>domain</> : <>email</>} to begin dark web scan</H3>
+
+            
+            {/* <H3>Enter {domainScan ? <>domain</> : <>email</>} to begin dark web scan</H3> */}
             {
                 !domainScan ?
                 <Form onSubmit={(e) => submitFormBreach(e)}>
                         <Input id="input" onChange={(e) => updateInput(e)}/>
-                        <Button type='submit'>Submit</Button>
+                        <div style={{display:'flex', alignItems:'center', justifyContent: 'space-between', width:'400px'}}>
+                            <Button id='search' type='submit'>Search</Button>
+                            <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
+                        </div>
                 </Form>
             :
                 <Form onSubmit={(e) => submitFormDomain(e)}>
                     <Input id="input" onChange={(e) => updateInput(e)}/>
-                    <Button type='submit'>Submit</Button>            
+                    <Button id='search1' type='submit'>Search</Button>            
                 </Form>
             }
             
-        </Container>
         {
             noEmailError ?
             <p>Don't forget to input an email address!</p>
@@ -112,24 +117,14 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
 
 
 const SwitchMode = styled.div`
-    position: absolute;
-    top:0;
-    right:0;
-    margin: 10px;
-    border-radius:20px;
-    background: rgba(216, 213, 207, 0.35);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 10px 20px;
-    font-size: 12px;
-    &:hover{
-        cursor: pointer;
-        transition: 1s;
-        scale: 1.1;
-    }
-
-    &:not(:hover){
-        transition: 1s;
-    }
+    margin-top: 30px;
+    padding: 10px 30px;
+    font-weight: 600;
+    background-color: #2433C7;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 18px;
 
 `
 
@@ -137,7 +132,7 @@ const H3 = styled.h3`
     padding-bottom: 30px;
 `
 const Div = styled.div`
-    position: relative;
+    /* position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -147,7 +142,7 @@ const Div = styled.div`
     border-radius: 20px;
     background-color:rgba(235, 232, 226, 0.35);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-weight: bold;
+    font-weight: bold; */
 
 `
 const Container = styled.div`
@@ -159,29 +154,38 @@ const Container = styled.div`
 `
 
 const Form = styled.form`
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: space-evenly;
     background: rgba(216, 213, 207, 0.35);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     width: 100%;
-    padding: 10px;
+    padding: 10px; */
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 
 const Input = styled.input`
-    width: 500px;
+    /* width: 500px;
     padding: 5px 20px;
     background: #f3f3f3;
     border-radius: 20px;
     border: transparent;
     font-size: 20px;
     text-align: center;
-    margin: 0px 20px;
+    margin: 0px 20px; */
+    min-width: 45vw;
+    padding: 5px 10px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 1.5em;
 `
 
 const Button = styled.button`
-    background: #050505;
+    /* background: #050505;
     border-radius: 20px;
     min-width: 15%;
     padding:5px;
@@ -195,7 +199,15 @@ const Button = styled.button`
 
     &:not(:hover){
         transition: 1.5s
-    }
+    } */
+    margin-top: 30px;
+    padding: 10px 30px;
+    font-weight: 600;
+    background-color: #2433C7;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    border-radius: 18px;
 `
 
 export default Search

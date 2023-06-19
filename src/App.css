@@ -1,21 +1,121 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Kanit:wght@400;600&family=Roboto+Condensed&display=swap');
 body{
   margin:0;
   padding:0;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   /* background: rgb(2,0,36); */
-  background-color: #FFF8E8;
+  background-color: #001220;
+}
+
+.blue{
+  background-color: #2433C7;
+}
+
+@keyframes slideUp{
+  from{
+    transform: translateY(0);
+  }
+  to{
+    transform: translateY(-1000);
+  }
+}
+
+.slideUp{
+  animation: slideUp forwards;
 }
 
 *{
   margin:0;
   padding:0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Kanit', sans-serif;
+  color: white;
 }
 button, input{
   color: black;
 }
 
 #root{
-  min-height: 100vh;
+  /* min-height: 100vh;
+  overflow-x: hidden; */
+}
+
+.moveUp{
+  transform: translateY(-200)
+}
+svg{
+  width:100%;
+  height:auto;
+}
+#svg1{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index: -4
+}
+#svg2{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index:-3;
+
+}
+#svg3{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index:-1;
+
+}
+#svg4{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index: -4;
+}
+
+#svg5{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index:0
+
+}
+#svg6{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index:1
+
+
+}
+#svg7{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+  z-index:2
+
+
+}
+#svg8{
+
+  position: absolute;
+  width:100vw;
+  left:0;
+  bottom: 0;
+
 }

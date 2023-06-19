@@ -5,7 +5,8 @@ import Data from '../types/Data.types'
 import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import {emptyData}  from '../data/Data.instance'
 
-import { useEffect, useState } from 'react'
+
+import { useEffect, useState, useRef } from 'react'
 
 
 /*Props for Body component
@@ -21,6 +22,7 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
     // State holding leak data for one leak to be passed to leakDetails Component
     const [leakData, setLeakData] = useState<Data>(emptyData);
     const [infoTab, setInfoTab] = useState(false);
+    const myRef = useRef<HTMLElement | null>(null);
 
     // function to get leak data from one leak that was clicked on in Leaks Component to be passed to leakDetails Component
     const getData = (data:Data): void => {
@@ -36,13 +38,22 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
     // Recalls if leaks are changed --> when new email is entered
     useEffect(() => {
         setLeakData(emptyData)
+        if (myRef.current !== null){
+            myRef.current?.scrollIntoView({ behavior: 'smooth' });
+            // window.scrollBy(0, -85);
+        }
+        
     }, [leaks])
 
     return (
-    <Container>
-        <InfoPanel onClick={()=>togglePageInfo()}> <AiOutlineQuestionCircle size={24} /> </InfoPanel>
-        <Leaks leaks={leaks} getData={getData} infoTab={infoTab} />
-        <LeakDetails leakData={leakData} errorMessage={errorMessage} infoTab={infoTab} />
+    <Container id='body' >
+        <ScrollPoint ref={myRef as React.RefObject<HTMLDivElement>}></ScrollPoint>
+        <LeaksTitle>Here's What We Found</LeaksTitle>
+        <ResultsContainer>
+            {/* <InfoPanel onClick={()=>togglePageInfo()}> <AiOutlineQuestionCircle size={24} /> </InfoPanel> */}
+            <Leaks leaks={leaks} getData={getData} infoTab={infoTab} />
+            <LeakDetails leakData={leakData} errorMessage={errorMessage} infoTab={infoTab} />
+        </ResultsContainer>
     </Container>
     )
 }
@@ -56,9 +67,12 @@ const scaleUp = keyframes`
   }
 `;
 
+const LeaksTitle = styled.h1`
+    padding-bottom: 20px;
 
+`
 const Container = styled.div`
-    animation: ${scaleUp} 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    /* animation: ${scaleUp} 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     position:relative;
     display:flex;
     width: 100%;
@@ -68,7 +82,24 @@ const Container = styled.div`
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     min-height: 70vh;
-    margin:20px;
+    margin:20px; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+
+`
+
+const ScrollPoint = styled.div`
+    position: absolute;
+    transform: translateY(-150px)
+
+`
+
+const ResultsContainer = styled.div`
+    display: flex;
+    min-width: 80vw;
 
 `
 

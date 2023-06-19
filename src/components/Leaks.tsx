@@ -63,7 +63,11 @@ const LeakInfo = styled.div`
 `
 
 const Container = styled.div`
-    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 60px;
+    z-index: 999;
+    /* width: 30%;
     max-height:650px;
     display: flex;
     flex-direction: column;
@@ -76,8 +80,8 @@ const Container = styled.div`
     padding:20px 10px;
     overflow-x: hidden;
     overflow-y: auto; /* allow vertical scrolling */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    /* scrollbar-width: none; Firefox */
+    /* -ms-overflow-style: none; Internet Explorer 10+  */
 
     /* Hide scrollbar for Chrome, Safari and Opera */
     &::-webkit-scrollbar {
@@ -86,9 +90,9 @@ const Container = styled.div`
 `
 
 const H2 = styled.h2`
-    border-bottom: 3px solid white;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 `
 
 export default Leaks

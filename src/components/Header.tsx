@@ -14,35 +14,58 @@ Home to the WebPage title and the Search Bar*/
 const Header = () => {
   return (
     <Container>
-        <H1Left>ISAIX</H1Left>
-        <H1Middle>Dark Web Scanner</H1Middle>
+        <Logo>ISAIX</Logo>
+        <Nav>
+          <NavItem>Nav</NavItem>
+          <NavItem>Nav</NavItem>
+          <NavItem>Nav</NavItem>
+          <NavItem>Nav</NavItem>
+          <Button>Contact</Button>
+        </Nav>
     </Container>
   )
 }
 
 const Container = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto auto;
-    align-items: start;
-    max-width: 1400px;
-    width:85%;
+    display: flex;
+    padding: 20px 80px;
+    justify-content: space-between;
+    width: 90%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 1000;
+    background-color:#001220;
 `
 
-const H1Left = styled.h1`
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  padding: 20px;
+const Logo = styled.h1`
+
+`
+const Button = styled.button`
+  padding: 10px 25px;
+  border-radius: 18px;
+  background-color: #2433C7;
+  border: none;
+  color: white;
+  font-size: 1.3em;
+  text-align: center;
 
 `
 
 const H1Middle = styled.div`
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  justify-self: center;
-  align-self: center;
-  font-size: 2em;
-  padding: 20px;
+  
+`
+const Nav = styled.ul`
+  display: flex;
+  list-style: none;
+  align-items: center;
+
+`
+
+const NavItem = styled.li`
+  padding: 0 40px;
+  font-size: 1.3em;
+
 `
 
 export default Header

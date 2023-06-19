@@ -144,7 +144,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
     }
   return (
     <Container>
-        <H2Title>Leak Details</H2Title>
+        {/* <H2Title>Leak Details</H2Title> */}
         {/* If leak data is found -> render leak data */}
         {
             !infoTab ?
@@ -166,8 +166,10 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
                         :
                         <>
                             <InfoPanel onClick={()=>toggleInfo()}> <AiFillQuestionCircle size={24} /> </InfoPanel>
-                            <SiteName>{leakData.Name}</SiteName>
-                            <H3>Breached On: {leakData.BreachDate}</H3>
+                            <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                                <SiteName>{leakData.Name}</SiteName>
+                                <H3>Breached On: {leakData.BreachDate}</H3>
+                            </div>
                             <SubContainer>
                                 <H3Leak>Leaked Data</H3Leak>
                                 
@@ -200,9 +202,10 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
             :
             <DivInfo>
                 <SubContainerInfoTab>
-
-                            <SiteName>Name of the site</SiteName>
-                            <H3>Date of Leak</H3>
+                            <div style={{display:'flex', flexDirection:'column'}}>
+                                <SiteName>Name of the site</SiteName>
+                                <H3>Date of Leak</H3>
+                            </div>
                             <SubContainer>
                                 <H3Leak>Leaked Data</H3Leak>
                                 
@@ -268,24 +271,22 @@ const DivInfo = styled.div`
 `
 
 const ThreatBarDiv = styled.div`
-    background: #D6D0C7;
+    /* background: #D6D0C7;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     width:90%;
     padding:10px;
-    margin-top: 10px;
+    margin-top: 10px; */
+    margin-top: 40px;
+    border-top: 3px solid white;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
 `
 const Div = styled.div`
-    position: relative;
-    background: #D6D0C7;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    width: 90%;
-    display:flex;
-    flex-direction: column;
+    display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 10px;
+    width: 60vw;
 `
 
 const TextBlurb = styled.p`
@@ -340,15 +341,16 @@ const NoLeakMessage = styled.p`
 `
 
 const Container = styled.div`
-    display:flex;
+    /* display:flex;
     flex-direction: column;
     margin: 30px;
     padding:20px 0px;
     align-items:center;
-    width: 100%;
+    width: 60vw;
     background: #E7E2D7;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
+    border-radius: 20px; */
+    z-index: 999;
 `
 
 const H2Title = styled.h2`
@@ -358,7 +360,7 @@ const H2Title = styled.h2`
 `
 
 const SiteName = styled.h2`
-    font-size: 24px;
+    font-size: 2em;
 `
 
 const List = styled.ul`
@@ -395,6 +397,7 @@ const SubContainerInfo = styled.div`
 const H3 = styled.h3`
     padding: 10px;
     font-size:16px;
+    text-align: center;
 `
 
 const H3Leak = styled.h3`
