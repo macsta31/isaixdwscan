@@ -52,9 +52,9 @@ const Button = styled.button`
 
 `
 
-const H1Middle = styled.div`
+// const H1Middle = styled.div`
   
-`
+// `
 const Nav = styled.ul`
   display: flex;
   list-style: none;

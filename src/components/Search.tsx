@@ -128,9 +128,9 @@ const SwitchMode = styled.div`
 
 `
 
-const H3 = styled.h3`
-    padding-bottom: 30px;
-`
+// const H3 = styled.h3`
+//     padding-bottom: 30px;
+// `
 const Div = styled.div`
     /* position: relative;
     width: 100%;
@@ -145,13 +145,13 @@ const Div = styled.div`
     font-weight: bold; */
 
 `
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    padding: 40px;
-`
+// const Container = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items:center;
+//     padding: 40px;
+// `
 
 const Form = styled.form`
     /* display: flex;

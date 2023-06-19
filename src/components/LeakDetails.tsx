@@ -353,11 +353,11 @@ const Container = styled.div`
     z-index: 999;
 `
 
-const H2Title = styled.h2`
-    border-bottom: 3px solid white;
-    margin-bottom: 18px;
-    padding-bottom: 5px;
-`
+// const H2Title = styled.h2`
+//     border-bottom: 3px solid white;
+//     margin-bottom: 18px;
+//     padding-bottom: 5px;
+// `
 
 const SiteName = styled.h2`
     font-size: 2em;

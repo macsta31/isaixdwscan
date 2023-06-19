@@ -2,7 +2,7 @@ import LeakDetails from './LeakDetails'
 import Leaks from './Leaks'
 import styled, { keyframes } from 'styled-components'
 import Data from '../types/Data.types'
-import { AiOutlineQuestionCircle } from 'react-icons/ai'
+// import { AiOutlineQuestionCircle } from 'react-icons/ai'
 import {emptyData}  from '../data/Data.instance'
 
 
@@ -29,9 +29,9 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
         setLeakData(data)
     }
 
-    const togglePageInfo = () => {
-        setInfoTab(!infoTab)
-    }
+    // const togglePageInfo = () => {
+    //     setInfoTab(!infoTab)
+    // }
 
     // Sets leak data to empty data object (found in data folder) this is why leakDetails is empty on load
     // Change to setLeakData(leaks[0]) to make it load the first leak on load
@@ -102,7 +102,7 @@ const ResultsContainer = styled.div`
     min-width: 80vw;
 
 `
-
+/* 
 const InfoPanel = styled.div`
     position: absolute;
     top:0;
@@ -119,6 +119,6 @@ const InfoPanel = styled.div`
     &:not(:hover){
         transition: 1.5s;
     }
-`
+` */
 
 export default Body
