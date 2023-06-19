@@ -29,9 +29,9 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
         setLeakData(data)
     }
 
-    // const togglePageInfo = () => {
-    //     setInfoTab(!infoTab)
-    // }
+    const togglePageInfo = () => {
+        setInfoTab(!infoTab)
+    }
 
     // Sets leak data to empty data object (found in data folder) this is why leakDetails is empty on load
     // Change to setLeakData(leaks[0]) to make it load the first leak on load
@@ -47,7 +47,7 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
 
     return (
     <Container id='body' >
-        <ScrollPoint ref={myRef as React.RefObject<HTMLDivElement>}></ScrollPoint>
+        <ScrollPoint onClick={togglePageInfo} ref={myRef as React.RefObject<HTMLDivElement>}></ScrollPoint>
         <LeaksTitle>Here's What We Found</LeaksTitle>
         <ResultsContainer>
             {/* <InfoPanel onClick={()=>togglePageInfo()}> <AiOutlineQuestionCircle size={24} /> </InfoPanel> */}
