@@ -104,7 +104,6 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
     // state to hold the generated hashmap
     const [hashMap, setHashMap] = useState<DataClassThreatMap>({});
 
-    const [animate, setAnimate] = useState(false);
 
 
     // state to hold the threat level of dataclass combination
