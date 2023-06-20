@@ -88,11 +88,8 @@ const Container = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #fff; 
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555; 
+        background: #fff;
+        border-radius: 50%;
     }
 `
 

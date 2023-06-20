@@ -14,19 +14,20 @@ body{
 
 @keyframes slideUp{
   from{
-    transform: translateY(0);
+    transform: translateY(100%);
+
   }
   to{
-    transform: translateY(-1000);
+    transform:translateY(0);
   }
 }
 
-@keyframes slideOut{
+@keyframes fadeOut{
   from{
-    transform: translateY(0);
+    opacity: 1;
   }
   to{
-    transform: translateY(-1000);
+    opacity:0;
   }
 }
 
@@ -37,6 +38,7 @@ body{
 .slideUp{
   animation: slideUp 1s forwards;
 }
+
 
 *{
   margin:0;
@@ -133,16 +135,8 @@ svg{
 
 }
 
-@keyframes slideUp{
-  from{
-    transform: translateY(100%);
 
-  }
-  to{
-    transform:translateY(0);
-  }
-}
 
-.slide-up{
+/* .slide-up{
   animation: slideUp 3s ease-in-out;
-}
+} */

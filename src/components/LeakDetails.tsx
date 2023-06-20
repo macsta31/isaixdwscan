@@ -134,7 +134,6 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
             // console.log('Global threat level:', threatLevel);
         });
         setInfoToggle(false)
-        setAnimate(!animate); // toggle animate
     }, [loadHashMap, leakData]);
     
 
