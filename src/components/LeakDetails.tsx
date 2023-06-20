@@ -1,10 +1,11 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components';
 import { useCallback, useEffect, useState } from 'react';
 import ThreatBar from './ThreatBar';
 import  { AiFillQuestionCircle } from 'react-icons/ai'
 import Data from '../types/Data.types';
 import { emptyData } from '../data/Data.instance';
 import LeakClassItem from './LeakClassItem';
+import '../App.css'
 
 /**
  * Props for leakDetails
@@ -103,6 +104,9 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
     // state to hold the generated hashmap
     const [hashMap, setHashMap] = useState<DataClassThreatMap>({});
 
+    const [animate, setAnimate] = useState(false);
+
+
     // state to hold the threat level of dataclass combination
     const [globalThreat, setGlobalThreat] = useState(0)
 
@@ -130,8 +134,9 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
             // console.log('Global threat level:', threatLevel);
         });
         setInfoToggle(false)
-
+        setAnimate(!animate); // toggle animate
     }, [loadHashMap, leakData]);
+    
 
     if(errorMessage){
 
@@ -143,7 +148,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
         setInfoToggle(!infoToggle)
     }
   return (
-    <Container>
+    <Container >
         {/* <H2Title>Leak Details</H2Title> */}
         {/* If leak data is found -> render leak data */}
         {
@@ -153,7 +158,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
                 leakData && leakData?.Name !== '' ? 
                 <>
                     
-                    <Div>
+                    <Div className='slideUp'>
                     {
                         infoToggle ?
                         <SubContainerInfo>
@@ -166,9 +171,9 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
                         :
                         <>
                             <InfoPanel onClick={()=>toggleInfo()}> <AiFillQuestionCircle size={24} /> </InfoPanel>
-                            <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+                            <div style={{display:'flex', flexDirection:'column', alignItems:'center', width:'min-content'}}>
                                 <SiteName>{leakData.Name}</SiteName>
-                                <H3>Breached On: {leakData.BreachDate}</H3>
+                                <H3>{leakData.BreachDate}</H3>
                             </div>
                             <SubContainer>
                                 <H3Leak>Leaked Data</H3Leak>
@@ -186,7 +191,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
                     }
                     
                     </Div>
-                    <ThreatBarDiv>
+                    <ThreatBarDiv className='slideUp'>
                         <ThreatBar globalThreat={globalThreat}/>
                     </ThreatBarDiv>
                     
@@ -238,6 +243,12 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
   )
 }
 
+// Define your keyframes
+const fadeIn = keyframes`
+  0% {opacity:0;}
+  100% {opacity:1;}
+`;
+
 const SubContainerInfoTab = styled.div`
     background: #D6D0C7;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -269,24 +280,37 @@ const DivInfo = styled.div`
     align-items: center;
     padding: 10px;
 `
+interface DivProps {
+    animate?: boolean;
+  }
 
-const ThreatBarDiv = styled.div`
-    /* background: #D6D0C7;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    width:90%;
-    padding:10px;
-    margin-top: 10px; */
+const ThreatBarDiv = styled.div<DivProps>`
     margin-top: 40px;
     border-top: 3px solid white;
     width: 60vw;
     display: flex;
     justify-content: center;
+    ${props => 
+    props.animate
+    ? css`
+        animation: ${fadeIn} 0.3s linear;
+      `
+    : ''
+  }
 `
-const Div = styled.div`
+
+
+const Div = styled.div<DivProps>`
     display: flex;
     align-items: center;
     width: 60vw;
+    ${props => 
+    props.animate
+    ? css`
+        animation: ${fadeIn} 0.3s linear;
+      `
+    : ''
+  }
 `
 
 const TextBlurb = styled.p`

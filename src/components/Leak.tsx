@@ -25,6 +25,7 @@ const Leak: React.FC<LeakProps> = ({leak, getData}) => {
 }
 
 const Container = styled.button`
+  min-height: 45px;
   width: 175px;
 	height: 50px;
 	cursor: pointer;
@@ -32,21 +33,21 @@ const Container = styled.button`
 	margin: 10px;
 	border: none;
 	border-radius: 10px;
-	box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #19248e, inset 5px 5px 10px #283ae1, inset -5px -5px 10px #19248e;
+	box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #2334C6, inset 5px 5px 10px #283ae1, inset -5px -5px 10px #19248e;
 	color: white;
 	font-size: 1.2em;
 
 
     &:hover {
-      box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #19248e, inset 5px 5px 10px #19248e, inset -5px -5px 10px #283ae1;
+      box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #2334C6, inset 5px 5px 10px #19248e, inset -5px -5px 10px #283ae1;
       font-size: 1em;
       transition: 500ms;
-      color: #b971f0;
-	    text-shadow: 0px 0px 10px #b971f0;
+      color: white;
+	    text-shadow: 0px 0px 10px white;
     }
 
     &:active {
-      box-shadow: -10px -10px 20px #283ae1, 10px 10px 20px #19248e, inset 10px 10px 15px #19248e, inset -10px -10px 15px #283ae1;
+      box-shadow: -10px -10px 20px #283ae1, 10px 10px 20px #2334C6, inset 10px 10px 15px #19248e, inset -10px -10px 15px #283ae1;
       font-size: 1em;
       color: #b971f0;
 	    text-shadow: 0px 0px 10px #b971f0;

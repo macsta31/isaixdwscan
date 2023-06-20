@@ -63,31 +63,39 @@ const LeakInfo = styled.div`
 `
 
 const Container = styled.div`
+    transform: translateY(-75px);
     display: flex;
     flex-direction: column;
     margin-right: 60px;
     z-index: 999;
-    /* width: 30%;
-    max-height:650px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background: #E7E2D7;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    margin: 30px 0px 30px 30px;
-    padding:20px 10px;
-    overflow-x: hidden;
-    overflow-y: auto; /* allow vertical scrolling */
-    /* scrollbar-width: none; Firefox */
-    /* -ms-overflow-style: none; Internet Explorer 10+  */
+    max-height:490px;
+    overflow-y: auto;
 
-    /* Hide scrollbar for Chrome, Safari and Opera */
+    /* Styling for Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #fff #2334c6;
+
+    /* Styling for Internet Explorer */
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+    /* Styling for Webkit browsers */
     &::-webkit-scrollbar {
-        display: none;
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #2334c6; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #fff; 
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555; 
     }
 `
+
 
 const H2 = styled.h2`
     margin-top: 20px;

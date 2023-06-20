@@ -40,7 +40,7 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
             const inputBar = document.getElementById("input")
             if(inputBar !== null){
                 setNoEmailError(true);
-                inputBar.style.border = "5px solid red"
+                inputBar.style.border = "1px solid red"
             }
             clearLeaks()
             return;
@@ -61,7 +61,7 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
             const inputBar = document.getElementById("input")
             if(inputBar !== null){
                 setNoEmailError(true);
-                inputBar.style.border = "5px solid red"
+                inputBar.style.border = "1px solid red"
             }
             clearLeaks()
             return;
@@ -99,13 +99,16 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
             :
                 <Form onSubmit={(e) => submitFormDomain(e)}>
                     <Input id="input" onChange={(e) => updateInput(e)}/>
-                    <Button id='search1' type='submit'>Search</Button>            
+                    <div style={{display:'flex', alignItems:'center', justifyContent: 'space-between', width:'400px'}}>
+                        <Button id='search1' type='submit'>Search</Button>
+                        <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
+                    </div>            
                 </Form>
             }
             
         {
             noEmailError ?
-            <p>Don't forget to input an email address!</p>
+            <p style={{display: 'grid', placeContent:'center', marginTop:'20px', color:'red'}}>Don't forget to input an email address!</p>
             :
             <></>
         }
@@ -120,11 +123,33 @@ const SwitchMode = styled.div`
     margin-top: 30px;
     padding: 10px 30px;
     font-weight: 600;
-    background-color: #2433C7;
+    width: 27%;
+    text-align: center;
+    background-color: #001220;
     border: none;
     color: white;
     font-size: 1.5em;
     border-radius: 18px;
+    box-shadow: -5px -5px 15px #001424, 5px 5px 15px #000a12, inset 5px 5px 10px #001b2f, inset -5px -5px 10px #001424;
+	color: white;
+	font-size: 1.2em;
+
+
+    &:hover {
+      box-shadow: -5px -5px 15px #002644, 5px 5px 15px #000a12, inset 5px 5px 10px #000a12, inset -5px -5px 10px #002644;
+      font-size: 1em;
+      transition: 500ms;
+      color: white;
+	  text-shadow: 0px 0px 10px white;
+      cursor:pointer;
+    }
+
+    &:active {
+      box-shadow: -10px -10px 20px #002644, 10px 10px 20px #000a12, inset 10px 10px 15px #000a12, inset -10px -10px 15px #002644;
+      font-size: 1em;
+      color: white;
+	  text-shadow: 0px 0px 10px white;
+    }
 
 `
 
@@ -203,11 +228,32 @@ const Button = styled.button`
     margin-top: 30px;
     padding: 10px 30px;
     font-weight: 600;
-    background-color: #2433C7;
+    width: 30%;
+    background-color: #001220;
     border: none;
     color: white;
     font-size: 1.5em;
     border-radius: 18px;
+    box-shadow: -5px -5px 15px #001424, 5px 5px 15px #000a12, inset 5px 5px 10px #001b2f, inset -5px -5px 10px #001424;
+	color: white;
+	font-size: 1.2em;
+
+
+    &:hover {
+      box-shadow: -5px -5px 15px #002644, 5px 5px 15px #000a12, inset 5px 5px 10px #000a12, inset -5px -5px 10px #002644;
+      font-size: 1em;
+      transition: 500ms;
+      color: white;
+	    text-shadow: 0px 0px 10px white;
+        cursor:pointer;
+    }
+
+    &:active {
+      box-shadow: -10px -10px 20px #002644, 10px 10px 20px #000a12, inset 10px 10px 15px #000a12, inset -10px -10px 15px #002644;
+      font-size: 1em;
+      color: white;
+      text-shadow: 0px 0px 10px white;
+    }
 `
 
 export default Search

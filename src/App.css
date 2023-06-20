@@ -21,8 +21,21 @@ body{
   }
 }
 
+@keyframes slideOut{
+  from{
+    transform: translateY(0);
+  }
+  to{
+    transform: translateY(-1000);
+  }
+}
+
+.slideOut{
+  animation: slideUp 1s forwards;
+}
+
 .slideUp{
-  animation: slideUp forwards;
+  animation: slideUp 1s forwards;
 }
 
 *{
@@ -118,4 +131,18 @@ svg{
   left:0;
   bottom: 0;
 
+}
+
+@keyframes slideUp{
+  from{
+    transform: translateY(100%);
+
+  }
+  to{
+    transform:translateY(0);
+  }
+}
+
+.slide-up{
+  animation: slideUp 3s ease-in-out;
 }
