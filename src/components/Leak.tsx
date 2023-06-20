@@ -19,29 +19,38 @@ interface LeakProps{
 const Leak: React.FC<LeakProps> = ({leak, getData}) => {
   return (
     <Container onClick={() => getData(leak)}>
-       <h3>{leak.Name}</h3>
+       {leak.Name}
     </Container>
   )
 }
 
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    margin: 8px;
-    width: 75%;
-    background: #DED9CE;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.12);
-    border-radius: 20px;
+const Container = styled.button`
+  min-height: 45px;
+  width: 175px;
+	height: 50px;
+	cursor: pointer;
+	background: #2433C7; //333
+	margin: 10px;
+	border: none;
+	border-radius: 10px;
+	box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #2334C6, inset 5px 5px 10px #283ae1, inset -5px -5px 10px #19248e;
+	color: white;
+	font-size: 1.2em;
 
-    &:hover{
-        cursor: pointer;
-        transition: 0.5s;
-        transform: scale(1.15);
+
+    &:hover {
+      box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #2334C6, inset 5px 5px 10px #19248e, inset -5px -5px 10px #283ae1;
+      font-size: 1em;
+      transition: 500ms;
+      color: white;
+	    text-shadow: 0px 0px 10px white;
     }
-    &:not(:hover){
-        transition: 0.5s;
+
+    &:active {
+      box-shadow: -10px -10px 20px #283ae1, 10px 10px 20px #2334C6, inset 10px 10px 15px #19248e, inset -10px -10px 15px #283ae1;
+      font-size: 1em;
+      color: #b971f0;
+	    text-shadow: 0px 0px 10px #b971f0;
     }
 `
 
