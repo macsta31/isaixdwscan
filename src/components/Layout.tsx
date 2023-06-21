@@ -1,9 +1,10 @@
 import Header from "./Header"
 import Body from "./Body"
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Footer from "./Footer"
 import Search from "./Search"
 import { useState } from "react"
+import { SvgComponent } from "./AnimatedSvg"
 import '../App.css'
 
 /*Layout Component
@@ -14,6 +15,8 @@ const Layout = () => {
     const [leaks, setLeaks] = useState([])
     // Error state: Holds error message if returned from api -> no results
     const [error, setError] = useState<string | null>(null)
+    const [searchParam, setSearchParam] = useState<string|null>(null)
+    const [loading, setLoading] = useState(false)
 
 
     /*callAPI function
@@ -21,30 +24,12 @@ const Layout = () => {
     output: Promise<>
     Make call to our proxy server and sets error and leaks accordingly from payload */
     const callAPIBreachedAccount = async (email: string): Promise<void> => {
+      setLoading(true)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSearchParam(email)
         try {
           const response = await fetch(`https://dw-proxy-server.vercel.app/api/breachedaccount?email=${email}`);
           const data = await response.json();
-      
-          if (!response.ok) {
-            setError(`Error: ${data.message}`);
-            setLeaks([])
-          } else {
-            setLeaks(data);
-            setError(null);
-          }
-        } catch (error) {
-          if (error instanceof Error) {
-            setError(`Error: ${error.message}`);
-          } else {
-            setError('An unknown error occurred.');
-          }
-        }
-    };
-
-    const callAPIDomain = async (domain: string): Promise<void> => {
-      try {
-        const response = await fetch(`https://dw-proxy-server.vercel.app/api/breaches?domain=${domain}`);
-        const data = await response.json();
         
     
         if (!response.ok) {
@@ -64,6 +49,37 @@ const Layout = () => {
           setError('An unknown error occurred.');
         }
       }
+      setLoading(false)
+    };
+
+    const callAPIDomain = async (domain: string): Promise<void> => {
+      setLoading(true)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setSearchParam(domain)
+      try {
+        const response = await fetch(`https://dw-proxy-server.vercel.app/api/breaches?domain=${domain}`);
+        const data = await response.json();
+        console.log(data)
+        
+    
+        if (!response.ok) {
+          setError(`Error: ${data.message}`);
+          setLeaks([])
+        } else if (data.length === 0){
+          throw new Error("Error Not Found")
+        } 
+        else {
+          setLeaks(data);
+          setError(null);
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(`Error: ${error.message}`);
+        } else {
+          setError('An unknown error occurred.');
+        }
+      }
+      setLoading(false)
   };
     // resets leaks state
     const clearLeaks = (): void => {
@@ -85,12 +101,13 @@ const Layout = () => {
     //     <Footer />
     // </Container>
     <Page>
+      <div id='topref'></div>
       <Container>
         <Header />
         <Hero>
-          <HeroTitle>Has Your information Been Leaked Online?</HeroTitle>
+          <HeroTitle id='title'>Has Your information Been Leaked Online?</HeroTitle>
           <HeroSubTitle>Enter Your Email Below To Find Out</HeroSubTitle>
-          <Search callAPIBreachedAccount={callAPIBreachedAccount} clearLeaks={clearLeaks} callAPIDomain={callAPIDomain}/>
+          <Search loading={loading} callAPIBreachedAccount={callAPIBreachedAccount} clearLeaks={clearLeaks} callAPIDomain={callAPIDomain}/>
         </Hero>
         <Divider>
         <svg id="svg1"width="1440" height="500" viewBox="0 0 1440 238" fill="none" xmlns="http://www.w3.org/2000/svg" className='slideUp'>
@@ -110,7 +127,7 @@ const Layout = () => {
       {
           leaks.length > 0  || error ? 
           <Container className="blue moveUp">
-            <Body leaks={leaks} errorMessage={error} />
+            <Body leaks={leaks} errorMessage={error} searchParam={searchParam} />
             <svg id="svg5"width="1440" height="450" viewBox="0 0 1440 238" fill="none" xmlns="http://www.w3.org/2000/svg" className='slideUp'>
               <path d="M0 56.8476L48 54.3431C96 51.8387 192 46.8298 288 70.3718C384 93.4129 480 145.506 576 124.468C672 103.431 768 10.2645 864 0.747479C960 -8.2686 1056 66.8655 1152 86.9012C1248 106.937 1344 71.8744 1392 54.3431L1440 36.8119V703H1392C1344 703 1248 703 1152 703C1056 703 960 703 864 703C768 703 672 703 576 703C480 703 384 703 288 703C192 703 96 703 48 703H0V56.8476Z" fill="#475DE2"/>
             </svg>
@@ -133,6 +150,8 @@ const Layout = () => {
     </Page>
     )
 }
+
+
 
 const Container = styled.div`
     /* display:flex;
@@ -181,5 +200,6 @@ const Divider = styled.div`
   
 
 `
+
 
 export default Layout

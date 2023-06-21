@@ -7,7 +7,9 @@ body{
   /* background: rgb(2,0,36); */
   background-color: #001220;
 }
-
+html{
+  scroll-behavior: smooth;
+}
 .blue{
   background-color: #2433C7;
 }
@@ -21,6 +23,23 @@ body{
     transform:translateY(0);
   }
 }
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(-30px);
+  }
+  60% {
+      transform: translateY(-15px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
+
 
 @keyframes fadeOut{
   from{

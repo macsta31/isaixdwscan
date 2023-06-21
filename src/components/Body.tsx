@@ -15,10 +15,11 @@ errorMessage: string representing error from callAPI --> Passed to LeakDetails t
 interface BodyProps{
     leaks: Data[]
     errorMessage: string | null;
+    searchParam: string | null
 }
 
 
-const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
+const Body: React.FC<BodyProps> = ({leaks, errorMessage, searchParam}) => {
     // State holding leak data for one leak to be passed to leakDetails Component
     const [leakData, setLeakData] = useState<Data>(emptyData);
     const [infoTab, setInfoTab] = useState(false);
@@ -48,11 +49,11 @@ const Body: React.FC<BodyProps> = ({leaks, errorMessage}) => {
     return (
     <Container id='body' >
         <ScrollPoint onClick={togglePageInfo} ref={myRef as React.RefObject<HTMLDivElement>}></ScrollPoint>
-        <LeaksTitle>Here's What We Found</LeaksTitle>
+        <LeaksTitle>Here's What We Found for: <br /> <p style={{fontSize:'0.8em'}}>{searchParam}</p></LeaksTitle>
         <ResultsContainer>
             {/* <InfoPanel onClick={()=>togglePageInfo()}> <AiOutlineQuestionCircle size={24} /> </InfoPanel> */}
             <Leaks leaks={leaks} getData={getData} infoTab={infoTab} />
-            <LeakDetails leakData={leakData} errorMessage={errorMessage} infoTab={infoTab} />
+            <LeakDetails leakData={leakData} errorMessage={errorMessage} infoTab={infoTab} searchParam={searchParam} />
         </ResultsContainer>
     </Container>
     )
@@ -68,7 +69,8 @@ const scaleUp = keyframes`
 `;
 
 const LeaksTitle = styled.h1`
-    padding-bottom: 20px;
+    margin-bottom: 50px;
+    text-align: center;
 
 `
 const Container = styled.div`

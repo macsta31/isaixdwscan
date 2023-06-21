@@ -15,7 +15,8 @@ import '../App.css'
 interface LeakDetailsProps{
     leakData: Data
     errorMessage: string | null;
-    infoTab: boolean
+    infoTab: boolean;
+    searchParam: string | null
 }
 /**
  * HashMap: dataClass: string -> threatLevel: number
@@ -99,7 +100,7 @@ const getGlobalThreatLevel = async (dataclasses: string[], hashMap: DataClassThr
  * Where all info about the selected Link is presented
  * Breach Date, Service name, Leaked Data Classes, Threat level presented as Spectrum
  */
-const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTab}) => {
+const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTab, searchParam}) => {
 
     // state to hold the generated hashmap
     const [hashMap, setHashMap] = useState<DataClassThreatMap>({});
@@ -232,7 +233,7 @@ const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTa
             <NoLeakContainer>
                 <NoLeakTitle>No Leaks Found!</NoLeakTitle>
                 <NoLeakMessage>No leaks for this address were found on the deep web.<br/>This is not a guarantee of safety but we think you are doing pretty good</NoLeakMessage>
-                <p>Or maybe you it wrong :O</p>
+                <a href='#topref'>Did you misspell your email address?</a>
             </NoLeakContainer>
             :
             <></>

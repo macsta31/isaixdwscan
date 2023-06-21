@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useState } from 'react'
+import { PacmanLoader } from 'react-spinners'
 
 
 /*Props for Search Component
@@ -9,9 +10,11 @@ interface SearchProps {
     callAPIBreachedAccount: (email:string) => Promise<void>
     callAPIDomain: (domain:string) => Promise<void>
     clearLeaks: () => void
+    loading: boolean
 }
 
-const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, callAPIDomain}) => {
+const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, callAPIDomain, loading}) => {
+
     
     // email state to hold value in search bar
     const [input, setInput] = useState('')
@@ -28,13 +31,11 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
      */
     const submitFormBreach = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log(e)
 
         const form = e.currentTarget as HTMLFormElement
         const inputBar = document.getElementById("input")
         const inputElement = inputBar as HTMLFormElement
         const formValue = inputElement.value
-        console.log(formValue)
 
         if(formValue === ''){
             const inputBar = document.getElementById("input")
@@ -90,7 +91,7 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
             {
                 !domainScan ?
                 <Form onSubmit={(e) => submitFormBreach(e)}>
-                        <Input id="input" onChange={(e) => updateInput(e)}/>
+                        {!loading ? <Input id="input" placeholder={'mark@gmail.com'} onChange={(e) => updateInput(e)}/> : <PacmanLoader color='#2334C6' size={32} />}
                         <div style={{display:'flex', alignItems:'center', justifyContent: 'space-between', width:'400px'}}>
                             <Button id='search' type='submit'>Search</Button>
                             <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
@@ -98,7 +99,7 @@ const Search: React.FC<SearchProps> = ({callAPIBreachedAccount, clearLeaks, call
                 </Form>
             :
                 <Form onSubmit={(e) => submitFormDomain(e)}>
-                    <Input id="input" onChange={(e) => updateInput(e)}/>
+                    {!loading ? <Input id="input" placeholder='facebook.com' onChange={(e) => updateInput(e)}/> : <PacmanLoader color='#2334C6' size={32} />}
                     <div style={{display:'flex', alignItems:'center', justifyContent: 'space-between', width:'400px'}}>
                         <Button id='search1' type='submit'>Search</Button>
                         <SwitchMode onClick={() => switchMode()}>{domainScan ? <>Email</> : <>Domain</>} Scan</SwitchMode>
