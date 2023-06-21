@@ -1,10 +1,9 @@
 import Header from "./Header"
 import Body from "./Body"
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import Footer from "./Footer"
 import Search from "./Search"
 import { useState } from "react"
-import { SvgComponent } from "./AnimatedSvg"
 import '../App.css'
 
 /*Layout Component

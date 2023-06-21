@@ -100,7 +100,7 @@ const getGlobalThreatLevel = async (dataclasses: string[], hashMap: DataClassThr
  * Where all info about the selected Link is presented
  * Breach Date, Service name, Leaked Data Classes, Threat level presented as Spectrum
  */
-const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTab, searchParam}) => {
+const LeakDetails: React.FC<LeakDetailsProps> = ({leakData, errorMessage, infoTab}) => {
 
     // state to hold the generated hashmap
     const [hashMap, setHashMap] = useState<DataClassThreatMap>({});
