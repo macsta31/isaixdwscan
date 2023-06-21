@@ -27,10 +27,11 @@ const Header = () => {
 }
 
 const Container = styled.div`
+    box-sizing: border-box;
     display: flex;
     padding: 20px 80px;
     justify-content: space-between;
-    width: 90%;
+    width: 100%;
     position: fixed;
     top:0;
     left:0;

@@ -29,7 +29,7 @@ const LeakClassItem: React.FC<LeakClassItemProps> = ({dataclass, url}) => {
                         pwPrompt ? 
                         <PasswordChange>
                             <p>Reset Password<br/></p>
-                            <a href={`https:/${url}`}>Here</a>
+                            <a href={`https://${url}`}>Here</a>
                         </PasswordChange>
                         :
                         <>
