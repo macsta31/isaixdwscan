@@ -123,12 +123,12 @@ const SwitchMode = styled.div`
     margin-top: 30px;
     padding: 10px 30px;
     font-weight: 600;
-    width: 27%;
+    width: 150px;
     text-align: center;
     background-color: #001220;
     border: none;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.3em;
     border-radius: 18px;
     box-shadow: -5px -5px 15px #001424, 5px 5px 15px #000a12, inset 5px 5px 10px #001b2f, inset -5px -5px 10px #001424;
 	color: white;
@@ -228,11 +228,11 @@ const Button = styled.button`
     margin-top: 30px;
     padding: 10px 30px;
     font-weight: 600;
-    width: 30%;
+    width: 150px;
     background-color: #001220;
     border: none;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.3em;
     border-radius: 18px;
     box-shadow: -5px -5px 15px #001424, 5px 5px 15px #000a12, inset 5px 5px 10px #001b2f, inset -5px -5px 10px #001424;
 	color: white;

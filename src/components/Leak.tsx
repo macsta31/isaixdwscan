@@ -29,17 +29,23 @@ const Container = styled.button`
   width: 175px;
 	height: 50px;
 	cursor: pointer;
-	background: #2433C7; //333
+	background: #011220; //333
+  /* background-color: #001220;
+    border: none;
+    color: white;
+    font-size: 1.3em;
+    border-radius: 18px;
+    box-shadow: -5px -5px 15px #001424, 5px 5px 15px #000a12, inset 5px 5px 10px #001b2f, inset -5px -5px 10px #001424; */
 	margin: 10px;
 	border: none;
 	border-radius: 10px;
-	box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #2334C6, inset 5px 5px 10px #283ae1, inset -5px -5px 10px #19248e;
-	color: white;
+  box-shadow: 0px 0px 0px #001424, 0px 0px 0px #000a12, inset 6px 7px 10px #001b2f, inset -5px -5px 10px #001424;
+  color: white;
 	font-size: 1.2em;
 
 
     &:hover {
-      box-shadow: -5px -5px 15px #283ae1, 5px 5px 15px #2334C6, inset 5px 5px 10px #19248e, inset -5px -5px 10px #283ae1;
+      box-shadow: 0px 0px 0px #283ae1, 0px 0px 0px #2334C6, inset 5px 5px 10px #000000, inset -5px -5px 10px #000000;
       font-size: 1em;
       transition: 500ms;
       color: white;
@@ -47,10 +53,11 @@ const Container = styled.button`
     }
 
     &:active {
-      box-shadow: -10px -10px 20px #283ae1, 10px 10px 20px #2334C6, inset 10px 10px 15px #19248e, inset -10px -10px 15px #283ae1;
+      box-shadow: 0px 0px 0px #283ae1, 0px 0px 0px #2334C6, inset 5px 5px 20px #000000, inset -5px -5px 20px #000000;
       font-size: 1em;
-      color: #b971f0;
-	    text-shadow: 0px 0px 10px #b971f0;
+      transition: 0.2s;
+      color: #2334C6;
+	    text-shadow: 0px 0px 10px #2334C6;
     }
 `
 

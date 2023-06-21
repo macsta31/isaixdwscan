@@ -8,7 +8,7 @@ import styled from 'styled-components'
 const Footer = () => {
   return (
     <Div>
-        <P>Data used for this project comes from <a href={'haveibeenpwned.com'}>haveibeenpwned.com</a></P>
+        <P>Data used for this project comes from <a href={'https://haveibeenpwned.com/'}>haveibeenpwned.com</a></P>
     </Div>
   )
 }
